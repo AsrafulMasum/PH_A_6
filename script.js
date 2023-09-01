@@ -37,7 +37,7 @@ const showTabs = (tabs) => {
 
 
 
-// loading tab data
+// loading card data
 const loadCard = async (id=1000) => {
 
   const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
@@ -50,6 +50,7 @@ const loadCard = async (id=1000) => {
 
 
 
+// showing cards on ui
 const showCard = (data) => {
 
   const cardContainer = document.getElementById('card-container');
@@ -60,19 +61,21 @@ const showCard = (data) => {
     divTag.classList = `card card-compact`;
     divTag.innerHTML = `
     
-      <figure><img class="h-52 rounded-lg" src=${card?.thumbnail} alt="Shoes" /></figure>
+      <figure><img class="h-52 w-full rounded-t-lg" src=${card?.thumbnail} alt="Shoes" /></figure>
 
-      <div class="flex justify-center items-start gap-4">
+      <div class="flex items-start gap-4">
 
-        <img class="w-20 mt-4" src="./images/profile.png" alt="">
+        <div class="mt-4 rounded-full">
+          <img class="rounded-full h-16 w-16" src=${card?.authors[0]?.profile_picture} alt="">
+        </div>
 
         <div class="flex flex-col gap-1 my-4">
-          <h2 class="card-title">Building a Winning UX Strategy Using the Kano Model</h2>
-          <div class="flex items-center gap-4">
-            <p>Awlad Hossain</p>
-            <input type="checkbox" checked="checked" class="checkbox" />
+          <h2 class="card-title">${card?.title}</h2>
+          <div class="flex items-center gap-2">
+            <p>${card?.authors[0]?.profile_name}</p>
+            <div>${card?.authors[0]?.verified  ? '<img src="./images/badge.png" alt="">'  : ''}</div>
           </div>
-          <p>91K views</p>
+          <p>${card?.others?.views} Views</p>
         </div>
 
       </div>
