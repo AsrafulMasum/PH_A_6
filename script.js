@@ -1,3 +1,4 @@
+let currentId;
 // loading tabs
 const loadTabs = async () => {
 
@@ -29,7 +30,9 @@ const showTabs = (tabs) => {
 
     btn.addEventListener('click', function(){
       loadCard(tab?.category_id);
-    })
+
+      btn.classList = `btn bg-btn-on text-white hover:bg-btn-on active:bg-btn-on focus:bg-btn-on  active:text-white focus:text-white px-6`;
+    });
 
   });
 }
@@ -40,11 +43,14 @@ const showTabs = (tabs) => {
 // loading card data
 const loadCard = async (id=1000) => {
 
+  // sortCard(id);
+  currentId = id;
   const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
   const allData = await res.json();
 
   const data = allData.data;
   showCard(data);
+  // sortCard(data);
 }
 
 
@@ -80,8 +86,6 @@ const showCard = (data) => {
       const min = Math.floor(sec/60);
       const hour = Math.floor(min/60);
       const finalMin = min%60;
-      console.log(finalMin);
-      console.log(hour);
 
       const divTag = document.createElement('div');
       divTag.classList = `card card-compact`;
@@ -119,6 +123,30 @@ const showCard = (data) => {
   }
 
 }
+
+
+const sortCard = async (id) => {
+
+  const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
+  const allData = await res.json();
+
+  const data = allData.data;
+  // const view = data.map(card => {
+  //   return parseFloat(card?.others?.views.slice(0, 3));
+  // })
+
+  let arr;
+  arr = (data.sort(function(a,b){
+    // console.log(a.others.views.slice(0, 3),b.others.views.slice(0, 3));
+
+    return (parseFloat(b.others.views.slice(0, 3))-parseFloat(a.others.views.slice(0, 3)))}));
+  // console.log(arr);
+  showCard(arr);
+}
+
+document.getElementById('sort-btn').addEventListener('click', function(){
+  sortCard(currentId);
+})
 
 
 
