@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+
+    <!-- daisyUi & tailwind -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="font-['Inter'] mx-4 my-10 max-w-screen-lg lg:mx-auto">
+    <section>
+      <!-- blog card -->
+      <div class="flex flex-col justify-center items-center gap-8">
+
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title">Discuss the scope of var, let, and const.</h2>
+            <p>Variables are a fundamental part of programming in JavaScript. They are used to store and manipulate data, but not all variables are created equal. JavaScript provides three ways to declare variables: var, let, and const, and each of them has different scoping rules and behaviors. In this blog post, we will explore the scope of var, let, and const in detail to help you write cleaner and more predictable code....</p>
+            <hr class="my-4">
+            <div class="card-actions justify-end">
+              <button onclick="modal_1.showModal()" class="btn btn-primary">Read More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title">Tell us the use cases of null and undefined.</h2>
+            <p>
+              In JavaScript, null and undefined are two distinct values that are often used to represent the absence or unavailability of a value, but they have slightly different use cases and meanings. Let's delve into the details of their use cases:....</p>
+            <hr class="my-4">
+            <div class="card-actions justify-end">
+              <button onclick="modal_2.showModal()" class="btn btn-primary">Read More</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-base-100 shadow-xl">
+          <div class="card-body">
+            <h2 class="card-title">What do you mean by REST API?</h2>
+            <p>REST API, which stands for Representational State Transfer Application Programming Interface, is a set of architectural principles and constraints for designing and interacting with web services. It was introduced by Roy Fielding in his doctoral dissertation in 2000 and has since become a widely adopted approach for building web-based APIs due to its simplicity, scalability, and statelessness.....</p>
+            <hr class="my-4">
+            <div class="card-actions justify-end">
+              <button onclick="modal_3.showModal()" class="btn btn-primary">Read More</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- blog modal -->
+      <div>
+
+        <!-- You can open the modal using ID.showModal() method -->
+        <dialog id="modal_1" class="modal">
+          <form method="dialog" class="modal-box w-11/12 max-w-5xl">
+            <h3 class="font-bold text-lg">Discuss the scope of var, let, and const.</h3>
+
+            <p class="py-4">Variables are a fundamental part of programming in JavaScript. They are used to store and manipulate data, but not all variables are created equal. JavaScript provides three ways to declare variables: var, let, and const, and each of them has different scoping rules and behaviors. In this blog post, we will explore the scope of var, let, and const in detail to help you write cleaner and more predictable code.</p>
+            <h3 class="font-bold py-4">1. var: Function Scope and Hoisting</h3>
+            <p class="py-4">The var keyword has been around in JavaScript since its early days, and it behaves differently from let and const in several ways.</p>
+            <p class="py-4">Function Scope: Variables declared with var are function-scoped. This means that they are accessible within the function in which they are declared, but not outside of it. Take a look at this example:</p>
+            <p class="text-lime-600 py-4">function example() {
+              if (true) {
+                var x = 10;
+              }
+              console.log(x); // 10
+            }</p>
+            <p class="py-4">In this example, x is accessible anywhere within the example function.</p>
+            <p class="py-4">Hoisting: Variables declared with var are hoisted to the top of their containing function or global scope. This means you can use a var variable before it's declared in the code, but it will have the value undefined until the assignment is reached.</p>
+            <p class="text-lime-600 py-4">function hoistingExample() {
+              console.log(y); // undefined
+              var y = 5;
+            }</p>
+            <p class="py-4">Re-declaration: You can re-declare a variable using var within the same scope without any errors. This can lead to unexpected behavior and bugs in your code.</p>
+            <p class="text-lime-600 py-4">var z = 5;
+              var z = 10; // No error, z is now 10</p>
+              <h3 class="font-bold py-4">2. let: Block Scope and No Hoisting</h3>
+              <p class="py-4">ES6 introduced the let keyword, which brought much-needed improvements to variable scoping.</p>
+              <p class="py-4">Block Scope: Variables declared with let are block-scoped, meaning they are accessible only within the nearest enclosing curly braces {} or block, including loops and conditional statements.</p>
+              <p class="text-lime-600 py-4">function blockScopeExample() {
+                if (true) {
+                  let x = 10;
+                }
+                console.log(x); // ReferenceError: x is not defined
+              }</p>
+              <p class="py-4">In this example, x is only accessible within the if block.</p>
+              <p class="py-4">No Hoisting: Unlike var, let variables are not hoisted, so you cannot use them before declaring them. This helps prevent certain types of bugs and makes your code more predictable.</p>
+              <p class="text-lime-600 py-4">function noHoistingExample() {
+                console.log(y); // ReferenceError: y is not defined
+                let y = 5;
+              }</p>
+              <p class="py-4">No Re-declaration: You cannot re-declare a variable with the same name in the same scope using let, which can also help catch errors early in development.</p>
+              <p class="text-lime-600 py-4">let z = 5;
+                let z = 10; // SyntaxError: Identifier 'z' has already been declared</p>
+              <h3 class="font-bold py-4">3. const: Block Scope and Immutability</h3>
+              <p class="py-4">The const keyword is used to declare constants, and it shares some similarities with let.</p>
+              <p class="py-4">Block Scope: Variables declared with const are block-scoped, just like let.</p>
+              <p class="text-lime-600 py-4">function constExample() {
+                if (true) {
+                  const x = 10;
+                }
+                console.log(x); // ReferenceError: x is not defined
+              }</p>
+              <p class="py-4">No Hoisting: const variables are not hoisted, so they must be declared before use.</p>
+              <p class="text-lime-600 py-4">function constHoistingExample() {
+                console.log(y); // ReferenceError: y is not defined
+                const y = 5;
+              }</p>
+              <p class="py-4">Immutability: The key difference with const is that variables declared with it cannot be reassigned after their initial value is set. However, for objects and arrays declared with const, their properties or elements can still be modified.</p>
+              <p class="text-lime-600 py-4">const pi = 3.14159;
+                pi = 3.14; // Error: Assignment to constant variable
+                
+                const arr = [1, 2, 3];
+                arr.push(4); // This is allowed</p>
+              <h3 class="font-bold py-4">Conclusion</h3>
+              <p class="py-4">Understanding variable scoping in JavaScript is crucial for writing clean and bug-free code. In modern JavaScript development, it is recommended to use let and const over var to take advantage of block scope, prevent hoisting-related issues, and ensure immutability where needed. By choosing the right variable declaration method based on your needs, you can write more predictable and maintainable code.</p>
+
+
+            <div class="modal-action">
+              <!-- if there is a button, it will close the modal -->
+              <button class="btn">Close</button>
+            </div>
+          </form>
+        </dialog>
+
+        <dialog id="modal_2" class="modal">
+          <form method="dialog" class="modal-box w-11/12 max-w-5xl">
+
+            <h3 class="font-bold text-lg">Tell us the use cases of null and undefined.</h3>
+
+            <p class="py-4">In JavaScript, null and undefined are two distinct values that are often used to represent the absence or unavailability of a value, but they have slightly different use cases and meanings. Let's delve into the details of their use cases:</p>
+            <h3 class="font-bold py-4">1. undefined:</h3>
+            <p class="py-4">Implicitly Undefined: Variables that are declared but not initialized are automatically assigned the value undefined. This is often the case with function parameters when the caller doesn't provide a value.</p>
+            <p class="text-lime-600 py-4">let variable;
+              console.log(variable); // Output: undefined</p>
+            <p class="py-4">Missing Properties: When you try to access an object property that doesn't exist, it returns undefined.</p>
+            <p class="text-lime-600 py-4">let obj = {};
+              console.log(obj.nonExistentProperty); // Output: undefined</p>
+            <p class="py-4">Function Return: When a function doesn't explicitly return a value, it returns undefined.</p>
+            <p class="text-lime-600 py-4">let obj = {};
+              function doNothing() {}
+              console.log(doNothing()); // Output: undefined
+            </p>
+            <p class="py-4">Array Elements: Accessing an index that doesn't exist in an array returns undefined.</p>
+            <p class="text-lime-600 py-4">let obj = {};
+              let arr = [1, 2, 3];
+              console.log(arr[10]); // Output: undefined
+            </p>
+            <p class="py-4">Default Parameter Values: When using default parameter values in functions, if no value is provided for a parameter, it defaults to undefined.</p>
+            <p class="text-lime-600 py-4">let obj = {};
+              function greet(name = "Guest") {
+                console.log(`Hello, ${name}!`);
+              }
+              greet(); // Output: Hello, Guest!
+            </p>
+            <h3 class="font-bold py-4">2. null:</h3>
+            <p class="py-4">Explicit Absence of Value: Unlike undefined, null is explicitly set to indicate the absence or intentional lack of a value. It is often used when you want to represent that a variable or property has no meaningful value.</p>
+            <p class="text-lime-600 py-4">
+              let value = null;
+            </p>
+            <p class="py-4">Clearing Values: It can be used to clear the value of a variable or property.</p>
+            <p class="text-lime-600 py-4">
+              let user = { name: "John" };
+              user = null; // Clear the user object
+            </p>
+            <p class="py-4">As a Placeholder: Sometimes, developers use null as a placeholder to indicate that a value will be assigned later or that a value is intentionally absent.</p>
+            <p class="text-lime-600 py-4">
+              let selectedOption = null; // Placeholder for user-selected option
+            </p>
+            <p class="py-4">Checking for Explicit Absence: You can use null to explicitly check if a value has been intentionally set to no value.</p>
+            <p class="text-lime-600 py-4">
+              if (someVariable === null) {
+                // Do something when someVariable is intentionally set to null
+              }
+            </p>
+            <p class="py-4">In summary, undefined typically represents the absence of a value due to the variable not being assigned a value or due to missing properties or indices. On the other hand, null is used to explicitly indicate that a variable or property has no meaningful value or to clear a variable's value. Understanding the differences between these two values is crucial when working with JavaScript to ensure your code behaves as expected.</p>
+
+
+
+            <div class="modal-action">
+              <!-- if there is a button, it will close the modal -->
+              <button class="btn">Close</button>
+            </div>
+          </form>
+        </dialog>
+
+        <dialog id="modal_3" class="modal">
+          <form method="dialog" class="modal-box w-11/12 max-w-5xl">
+            <h3 class="font-bold text-lg">What do you mean by REST API?</h3>
+
+            <p class="py-4">REST API, which stands for Representational State Transfer Application Programming Interface, is a set of architectural principles and constraints for designing and interacting with web services. It was introduced by Roy Fielding in his doctoral dissertation in 2000 and has since become a widely adopted approach for building web-based APIs due to its simplicity, scalability, and statelessness.</p>
+            <p class="py-4">REST APIs are based on a few key principles and constraints:</p>
+            <p class="py-4">Statelessness: Each request from a client to a server must contain all the information needed to understand and process the request. In other words, the server should not store any client state between requests. This makes REST APIs highly scalable because any server in a cluster can handle any request from a client without needing to be aware of previous requests.</p>
+            <p class="py-4">Client-Server Architecture: The client and server are separate entities that communicate over HTTP or a similar protocol. This separation of concerns allows for better scalability and flexibility. The client is responsible for the user interface and user experience, while the server is responsible for processing requests and managing resources.</p>
+            <p class="py-4">Uniform Interface: A uniform and consistent interface is a fundamental aspect of REST. It's composed of several constraints:</p>
+            <p class="py-4">Resource-Based: Resources (e.g., data objects or services) are identified by URIs (Uniform Resource Identifiers) and are manipulated using a small set of standard HTTP methods, including GET (retrieve data), POST (create a new resource), PUT (update a resource), DELETE (remove a resource), and others. These methods correspond to CRUD (Create, Read, Update, Delete) operations.</p>
+            <p class="py-4">Stateless Communication: Each request from a client to a server must contain all the information needed to understand and process the request. This ensures that each request is self-contained and independent.</p>
+            <p class="py-4">Representation: Resources may have multiple representations, such as JSON, XML, HTML, or others. Clients interact with these representations to perform actions on resources. The server decides which representation to send based on the request's headers (e.g., "Accept").</p>
+            <p class="py-4">Hypermedia (Optional): RESTful APIs can include hypermedia links within the responses, allowing clients to discover and navigate the API's functionality dynamically. This is often referred to as HATEOAS (Hypermedia as the Engine of Application State).</p>
+            <p class="py-4">Stateless Communication: Each request from a client to a server must contain all the information needed to understand and process the request. This ensures that each request is self-contained and independent.</p>
+            <p class="py-4">Layered System: A client can interact with a REST API through intermediaries, such as proxies, load balancers, and caches. This layered architecture improves scalability, security, and flexibility.</p>
+            <p class="py-4">Cacheability: Responses from the server can be explicitly marked as cacheable or non-cacheable, allowing clients to cache responses and reduce the need for repeated requests.</p>
+            <p class="py-4">Code on Demand (Optional): Clients can be extended with code downloaded from the server to enhance functionality. While this constraint is optional in REST, it's rarely used in practice.</p>
+            <p class="py-4">In summary, a REST API is a design approach for creating web services that adhere to specific architectural constraints, such as statelessness, a uniform interface, and client-server separation. These constraints make REST APIs scalable, flexible, and easy to work with, making them a popular choice for building modern web-based applications and services. Clients interact with resources via standard HTTP methods and exchange representations of those resources, typically in JSON or XML format.</p>
+
+
+            <div class="modal-action">
+              <!-- if there is a button, it will close the modal -->
+              <button class="btn">Close</button>
+            </div>
+          </form>
+        </dialog>
+
+      </div>
+
+    </section>
+  </body>
+</html>
